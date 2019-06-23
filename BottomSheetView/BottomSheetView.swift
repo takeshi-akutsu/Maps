@@ -33,7 +33,7 @@ final class BottomSheetView: UIView {
         }
     }
     
-    private var sheetLevel: SheetLevel? = .bottom { // NOTION: ここの初期値とstoryboardで設定したheight constを一致させる（コードで書くかあ...w）
+    var sheetLevel: SheetLevel? = .bottom { // NOTION: ここの初期値とstoryboardで設定したheight constを一致させる（コードで書くかあ...w）
         didSet {
             guard let sheetLevel = sheetLevel else { return }
             UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: [.curveEaseInOut, .allowUserInteraction], animations: { [weak self] in

@@ -7,9 +7,16 @@
 //
 
 import UIKit
+import MapKit
 
 final class TopViewController: UIViewController {
+    
     @IBOutlet weak var bottomSheetView: BottomSheetView!
+    @IBOutlet weak var mapView: MKMapView! {
+        didSet {
+            mapView.delegate = self
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,3 +26,8 @@ final class TopViewController: UIViewController {
     }
 }
 
+extension TopViewController: MKMapViewDelegate {
+    func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
+        bottomSheetView.sheetLevel = .bottom
+    }
+}

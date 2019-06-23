@@ -43,6 +43,7 @@
                     </view>
                     <connections>
                         <outlet property="bottomSheetView" destination="Ksj-U1-OJF" id="0rU-aj-kBM"/>
+                        <outlet property="mapView" destination="UiR-no-mao" id="29p-yX-6mT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
