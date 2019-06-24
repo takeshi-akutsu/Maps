@@ -41,4 +41,22 @@ public extension UIView {
     func subview<T>(of type: T.Type) -> T? {
         return subviews.compactMap { $0 as? T ?? $0.subview(of: type) }.first
     }
+    
+    var toImage: UIImage {
+        let renderer = UIGraphicsImageRenderer(bounds: bounds)
+        return renderer.image(actions: { rendererContext in
+            layer.render(in: rendererContext.cgContext)
+        })
+    }
+}
+
+public extension UIView {
+    func fill(in superView: UIView, padding: CGFloat = 0) {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.topAnchor.constraint(equalTo: superView.topAnchor, constant: padding).isActive = true
+        self.bottomAnchor.constraint(equalTo: superView.bottomAnchor, constant: padding).isActive = true
+        self.leadingAnchor.constraint(equalTo: superView.leadingAnchor, constant: padding).isActive = true
+        self.trailingAnchor.constraint(equalTo: superView.trailingAnchor, constant: padding).isActive = true
+    }
 }

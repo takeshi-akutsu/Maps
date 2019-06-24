@@ -6,8 +6,7 @@
 //  Copyright © 2019 Takeshi Akutsu. All rights reserved.
 //
 
-import Foundation
-
+import UIKit
 
 struct Offering {
     
@@ -33,6 +32,30 @@ struct Offering {
             case 4: self = .shipping
             case 5: self = .event
             default: self = .unknown
+            }
+        }
+        
+        var name: String {
+            switch self {
+            case .food: return "酒屋"
+            case .event: return "イベ"
+            case .office: return "PC"
+            case .sales: return "販売"
+            case .service: return "電話"
+            case .shipping: return "運送"
+            default: return "不明"
+            }
+        }
+        
+        var color: UIColor {
+            switch self {
+            case .food: return .brown
+            case .event: return .purple
+            case .office: return .orange
+            case .sales: return .red
+            case .service: return .blue
+            case .shipping: return .magenta
+            default: return .gray
             }
         }
     }

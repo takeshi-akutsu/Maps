@@ -25,8 +25,13 @@ enum SheetLevel{
     }
 }
 
+protocol BottomSheetViewDelegate {
+    func updateDataSource(offerings: [Offering])
+}
+
 final class BottomSheetView: UIView {
     var panGestureRecognizer: UIPanGestureRecognizer!
+    var customDelegate: BottomSheetViewDelegate?
     private var tableView: UITableView? {
         didSet {
             tableView?.isScrollEnabled = false
@@ -39,6 +44,13 @@ final class BottomSheetView: UIView {
             UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: [.curveEaseInOut, .allowUserInteraction], animations: { [weak self] in
                 self?.frame = sheetLevel.frame
             })
+        }
+    }
+    
+    var offerings: [Offering] = [] {
+        didSet {
+            customDelegate?.updateDataSource(offerings: offerings)
+            sheetLevel = .middle
         }
     }
     

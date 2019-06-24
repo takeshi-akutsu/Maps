@@ -21,3 +21,20 @@ extension StoryboardInstantiatable {
         return UIStoryboard.init(name: storyboardName, bundle: nil).instantiateInitialViewController() as! Self
     }
 }
+
+protocol NibInstantiatable where Self: UIView {
+    static var nibName: String { get }
+    func loadNib()
+}
+
+extension NibInstantiatable {
+    static var nibName: String {
+        return String.init(describing: Self.self)
+    }
+    
+    func loadNib() {
+        let view = UINib.init(nibName: Self.nibName, bundle: nil).instantiate(withOwner: self, options: nil).first as! UIView
+        addSubview(view)
+        view.fill(in: view.superview!)
+    }
+}
